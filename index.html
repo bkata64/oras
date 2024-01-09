@@ -35,7 +35,7 @@
     
     
     <div id='orakeret'>
-        <h2>A téli szünetig hátralévő idő:</h2>
+        <h2>A tavaszi szünetig hátralévő idő:</h2>
         <div id='kijelzo'></div>        
     </div>
     
@@ -46,9 +46,11 @@
         function frissit()
         {
             most = new Date();
-            teliSzunet = new Date(2023, 11, 20, 12, 0);
-            ora = Math.floor((teliSzunet - most) / (1000 * 60 * 60));
-            maradek = (teliSzunet - most) % (1000 * 60 * 60)
+            tavasziSzunet = new Date(2024, 2, 27, 12, 0);
+            nap = Math.floor((tavasziSzunet - most) / (1000 * 60 * 60 * 24));
+            maradek = (tavasziSzunet - most) % (1000 * 60 * 60 * 24)            
+            ora = Math.floor((maradek) / (1000 * 60 * 60));
+            maradek = (maradek) % (1000 * 60 * 60)
             perc = Math.floor(maradek / (1000 * 60))
             maradek = maradek % (1000 * 60)
             mp = Math.floor(maradek / 1000)
@@ -58,7 +60,7 @@
             if( perc < 10 )   perc = "0" + perc
             if( mp < 10 )   mp = "0" + mp            
     
-            kijelzo.innerHTML = ora + ":" + perc + ":" + mp            
+            kijelzo.innerHTML = nap + ' nap<br>' + ora + ":" + perc + ":" + mp            
         }
     
         setInterval('frissit()',1000)
